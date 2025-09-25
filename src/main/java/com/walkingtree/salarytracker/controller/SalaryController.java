@@ -42,7 +42,7 @@ public class SalaryController {
             RedirectAttributes redirectAttributes,
             HttpServletRequest request, Model model) {
         try {
-            List<SalaryRecord> records = salaryService.uploadSalaryExcel(file, employeeId);
+            salaryService.uploadSalaryExcel(file, employeeId);
             model.addAttribute("uploadMessage", "Excel uploaded and processed successfully");
             List<SalaryTrendDto> trends = salaryService.getSalaryTrend(employeeId, "USD"); // By default using USD
             model.addAttribute("salaryTrendData", trends);

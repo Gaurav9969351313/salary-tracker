@@ -1,12 +1,6 @@
 # Stage 1: Build stage
 FROM maven AS build
 
-# Install Node.js (LTS) and npm
-# RUN apt-get update && apt-get install -y curl && \
-#     curl -fsSL https://deb.nodesource.com/setup_lts.x | bash - && \
-#     apt-get install -y nodejs && \
-#     node -v && npm -v
-
 WORKDIR /app
 
 COPY pom.xml .

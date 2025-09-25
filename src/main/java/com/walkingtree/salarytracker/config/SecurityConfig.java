@@ -53,8 +53,6 @@ public class SecurityConfig {
 					.anyRequest().permitAll();
 		});
 
-		// httpSecurity.csrf(csrf->csrf.ignoringRequestMatchers("/logout"));
-
 		httpSecurity.formLogin(login -> {
 			login.loginPage("/")
 					.loginProcessingUrl("/authenticate")

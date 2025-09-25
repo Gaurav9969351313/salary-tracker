@@ -45,19 +45,3 @@ Content-Type: application/json
 ### 7. **Compare Salaries Across Companies** : Working
 GET {{baseurl}}/api/salaries/compare?employeeId={{empId}}&baseCurrency={{currency}}  HTTP/1.1
 Content-Type: application/json
-
-### Currency Management
-
-### 1. **Convert Currency**: Working
-GET {{baseurl}}/api/currency/convert?amount={{amount}}&from={{from}}&to={{to}} HTTP/1.1
-Content-Type: application/json
-
-
-### 2. **Get Exchange Rate**: Working
-GET {{baseurl}}/api/currency/rate?from={{from}}&to={{to}} HTTP/1.1
-Content-Type: application/json
-
-
-### 3. **Update Exchange Rate**: Working
-POST {{baseurl}}/api/currency/rate?from={{from}}&to={{to}}&rate={{rate}} HTTP/1.1
-Content-Type: application/json

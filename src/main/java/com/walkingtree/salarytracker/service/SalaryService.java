@@ -35,12 +35,10 @@ public class SalaryService {
         List<SalaryRecord> records = excelParsingService.parseExcelFile(file, employeeId);
 
         for (SalaryRecord record : records) {
-            // Check if record already exists
             Optional<SalaryRecord> existing = salaryRecordRepository
                     .findByEmployeeIdAndFinancialYear(employeeId, record.getFinancialYear());
 
             if (existing.isPresent()) {
-                // Update existing record
                 SalaryRecord existingRecord = existing.get();
                 existingRecord.setCompanyName(record.getCompanyName());
                 existingRecord.setFixedCTC(record.getFixedCTC());

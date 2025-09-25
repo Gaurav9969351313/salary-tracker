@@ -80,25 +80,20 @@ jobs:
           if [ -f version.txt ]; then
             VERSION=$(cat version.txt)
           else
-            VERSION=0.1.0
+            VERSION=1.0.0
           fi
           echo "version=$VERSION" >> $GITHUB_OUTPUT
       - name: Log in to Docker Hub
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: Build and push Docker image
         run: |
           mkdir -p jar && cp artifacts/app.jar jar/app.jar
-          docker build -t gauravtalele32/nl-sb-assignement:${{ steps.version.outputs.version }} .
-          docker tag gauravtalele32/nl-sb-assignement:${{ steps.version.outputs.version }} gauravtalele32/nl-sb-assignement:latest
-          docker push gauravtalele32/nl-sb-assignement:latest
-      # - name: Create Git tag
-      #   run: |
-      #     git config user.name gaurav9969351313
-      #     git tag -a v${{ steps.version.outputs.version }} -m "Release version ${{ steps.version.outputs.version }}"
-      #     git push origin v${{ steps.version.outputs.version }}
+          docker build -t gauravtalele32/salary-tracker:${{ steps.version.outputs.version }} .
+          docker tag gauravtalele32/salary-tracker:${{ steps.version.outputs.version }} gauravtalele32/salary-tracker:latest
+          docker push gauravtalele32/salary-tracker:latest
 
   deploy:
     runs-on: ubuntu-latest
@@ -111,7 +106,7 @@ jobs:
           if [ -f version.txt ]; then
             VERSION=$(cat version.txt)
           else
-            VERSION=0.1.0
+            VERSION=1.0.0
           fi
           echo "version=$VERSION" >> $GITHUB_OUTPUT
       - name: Install Render CLI
@@ -120,6 +115,6 @@ jobs:
         uses: gh-actions-workflows/deploy-docker-render@v1.1
         with:
           deploy-hook: ${{ secrets.RENDER_DEPLOY_HOOK }}
-          image-url: gauravtalele32/nl-sb-assignement:latest
+          image-url: gauravtalele32/salary-tracker:latest
           render-api-key: ${{ secrets.RENDER_API_KEY }}
           wait-for-deployment: true

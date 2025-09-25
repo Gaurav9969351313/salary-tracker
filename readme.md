@@ -31,6 +31,10 @@ A comprehensive Spring Boot backend system that enables employees to manage thei
   - [🚀 Deployment](#-deployment)
     - [Docker Support](#docker-support)
     - [Environment Variables](#environment-variables)
+    - [Deploying to Render with GitHub Actions](#deploying-to-render-with-github-actions)
+      - [How It Works](#how-it-works)
+      - [Example Render Deploy Step](#example-render-deploy-step)
+      - [Full Example](#full-example)
 
 ## 🔧 Prerequisites
 
@@ -110,11 +114,11 @@ The system expects Excel files with the following structure:
 ### Sample Excel Structure
 ```
 Sheet: 2023-24
-┌─────────────┬─────────────┬──────────┬─────────────┬──────────┬────────────┬────────────┐
-│ Company     │ Fixed CTC   │ Variable │ Deductions  │ Currency │ Start Date │ End Date   │
-├─────────────┼─────────────┼──────────┼─────────────┼──────────┼────────────┼────────────┤
-│ TechCorp    │ 800000      │ 120000   │ 50000       │ INR      │ 01-04-2023 │ 31-03-2024 │
-└─────────────┴─────────────┴──────────┴─────────────┴──────────┴────────────┴────────────┘
+┌─────────────┬─────────────┬──────────┬─────────────┬──────────┬
+│ Company     │ Fixed CTC   │ Variable │ Deductions  │ Currency │ 
+├─────────────┼─────────────┼──────────┼─────────────┼──────────┼
+│ TechCorp    │ 800000      │ 120000   │ 50000       │ INR      │
+└─────────────┴─────────────┴──────────┴─────────────┴──────────┴
 ```
 
 
@@ -122,13 +126,12 @@ Sheet: 2023-24
 
 Import the provided Postman collection from `postman/Salary-Management-APIs.json` for testing all endpoints.
 
-Sample test scenarios included:
+Sample test scenarios Needs to be added as Unit Test Cases:
 - Authentication flow
-- Excel upload with various formats
+- Excel upload with various formats (.xlsx / .xls)
 - Currency conversion validation
-- Error handling test cases
+- Error handling
 - Multi-company salary comparison
-
 
 ### Key Components
 
@@ -161,6 +164,41 @@ export GOOGLE_CLIENT_SECRET=your-client-secret
 export DATABASE_URL=jdbc:h2:mem:salarydb
 export SPRING_PROFILES_ACTIVE=docker / dev
 ```
+
+### Deploying to Render with GitHub Actions
+
+This project can be automatically deployed to [Render](https://render.com/) using GitHub Actions. Render is a cloud platform for running web services, APIs, and static sites.
+
+#### How It Works
+- The GitHub Actions workflow (`.github/workflows/ci-pipeline.yml`) builds your project on every push or pull request to the `main` branch, and can also be triggered manually.
+- To deploy to Render, you can add a deployment step in your workflow that uses the [Render Deploy Action](https://github.com/marketplace/actions/render-deploy) or triggers a deploy hook provided by Render.
+
+#### Example Render Deploy Step
+Add the following step to your workflow after building and testing:
+
+```yaml
+- name: Deploy to Render
+  uses: render-examples/deploy-to-render-action@v1
+  with:
+    service-id: ${{ secrets.RENDER_SERVICE_ID }}
+    api-key: ${{ secrets.RENDER_API_KEY }}
+```
+
+- `RENDER_SERVICE_ID` and `RENDER_API_KEY` should be set as GitHub repository secrets.
+- You can find your Service ID and API Key in your Render dashboard.
+
+Alternatively, you can use a [Render Deploy Hook](https://render.com/docs/deploy-hooks):
+
+```yaml
+- name: Trigger Render Deploy Hook
+  run: |
+    curl -X POST ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+```
+
+- Set `RENDER_DEPLOY_HOOK_URL` as a secret containing your Render deploy hook URL.
+
+#### Full Example
+See the [Render documentation](https://render.com/docs/deploy-from-github) for more details and advanced options.
 
 ---
 

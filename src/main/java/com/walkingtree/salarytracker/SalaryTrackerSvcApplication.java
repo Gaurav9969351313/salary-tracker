@@ -83,12 +83,12 @@ public class SalaryTrackerSvcApplication {
 			salaryRecordRepository.saveAll(List.of(
 				new SalaryRecord(null, "EMP001", "2021-22", "TechCorp India", BigDecimal.valueOf(800000), BigDecimal.valueOf(50000), BigDecimal.valueOf(25000), "INR", null, BigDecimal.valueOf(850000), BigDecimal.valueOf(825000), null, null),
 				new SalaryRecord(null, "EMP001", "2022-23", "TechCorp India", BigDecimal.valueOf(950000), BigDecimal.valueOf(75000), BigDecimal.valueOf(30000), "INR", null, BigDecimal.valueOf(1025000), BigDecimal.valueOf(995000), null, null),
-				new SalaryRecord(null, "EMP001", "2024-25", "GlobalTech UAE", BigDecimal.valueOf(216000), BigDecimal.valueOf(30000), BigDecimal.valueOf(7200), "AED", null, BigDecimal.valueOf(253200), BigDecimal.valueOf(246000), null, null),
-				new SalaryRecord(null, "EMP001", "2023-24", "GlobalTech UAE", BigDecimal.valueOf(180000), BigDecimal.valueOf(24000), BigDecimal.valueOf(6000), "AED", null, BigDecimal.valueOf(204600), BigDecimal.valueOf(198600), null, null),
-				new SalaryRecord(null, "EMP002", "2021-22", "Innovatech Europe", BigDecimal.valueOf(60000), BigDecimal.valueOf(5000), BigDecimal.valueOf(2000), "EUR", null, BigDecimal.valueOf(65000), BigDecimal.valueOf(63000), null, null),
-				new SalaryRecord(null, "EMP002", "2022-23", "Innovatech Europe", BigDecimal.valueOf(70000), BigDecimal.valueOf(7000), BigDecimal.valueOf(2500), "EUR", null, BigDecimal.valueOf(77000), BigDecimal.valueOf(74500), null, null),
-				new SalaryRecord(null, "EMP002", "2023-24", "TechCorp India", BigDecimal.valueOf(900000), BigDecimal.valueOf(60000), BigDecimal.valueOf(35000), "INR", null, BigDecimal.valueOf(960000), BigDecimal.valueOf(925000), null, null),
-				new SalaryRecord(null, "EMP002", "2024-25", "TechCorp India", BigDecimal.valueOf(1100000), BigDecimal.valueOf(80000), BigDecimal.valueOf(40000), "INR", null, BigDecimal.valueOf(1180000), BigDecimal.valueOf(1140000), null, null)
+				new SalaryRecord(null, "EMP002", "2024-25", "GlobalTech UAE", BigDecimal.valueOf(216000), BigDecimal.valueOf(30000), BigDecimal.valueOf(7200), "AED", null, BigDecimal.valueOf(253200), BigDecimal.valueOf(246000), null, null),
+				new SalaryRecord(null, "EMP002", "2023-24", "GlobalTech UAE", BigDecimal.valueOf(180000), BigDecimal.valueOf(24000), BigDecimal.valueOf(6000), "AED", null, BigDecimal.valueOf(204600), BigDecimal.valueOf(198600), null, null),
+				new SalaryRecord(null, "EMP003", "2021-22", "Innovatech Europe", BigDecimal.valueOf(60000), BigDecimal.valueOf(5000), BigDecimal.valueOf(2000), "EUR", null, BigDecimal.valueOf(65000), BigDecimal.valueOf(63000), null, null),
+				new SalaryRecord(null, "EMP003", "2022-23", "Innovatech Europe", BigDecimal.valueOf(70000), BigDecimal.valueOf(7000), BigDecimal.valueOf(2500), "EUR", null, BigDecimal.valueOf(77000), BigDecimal.valueOf(74500), null, null),
+				new SalaryRecord(null, "EMP004", "2023-24", "TechCorp India", BigDecimal.valueOf(900000), BigDecimal.valueOf(60000), BigDecimal.valueOf(35000), "INR", null, BigDecimal.valueOf(960000), BigDecimal.valueOf(925000), null, null),
+				new SalaryRecord(null, "EMP004", "2024-25", "TechCorp India", BigDecimal.valueOf(1100000), BigDecimal.valueOf(80000), BigDecimal.valueOf(40000), "INR", null, BigDecimal.valueOf(1180000), BigDecimal.valueOf(1140000), null, null)
 			));
 		};
 	}

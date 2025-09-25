@@ -35,6 +35,10 @@ A comprehensive Spring Boot backend system that enables employees to manage thei
       - [How It Works](#how-it-works)
       - [Example Render Deploy Step](#example-render-deploy-step)
       - [Full Example](#full-example)
+  - [Demo](#demo)
+  - [User Creation, Admin Role, and OAuth 2.0](#user-creation-admin-role-and-oauth-20)
+    - [User Creation \& Admin Role](#user-creation--admin-role)
+    - [OAuth 2.0 Authentication](#oauth-20-authentication)
 
 ## 🔧 Prerequisites
 
@@ -199,6 +203,29 @@ Alternatively, you can use a [Render Deploy Hook](https://render.com/docs/deploy
 
 #### Full Example
 See the [Render documentation](https://render.com/docs/deploy-from-github) for more details and advanced options.
+
+## Demo
+
+Check the live demo on Render: [https://salary-tracker-0fbe.onrender.com](https://salary-tracker-0fbe.onrender.com)
+
+---
+
+## User Creation, Admin Role, and OAuth 2.0
+
+### User Creation & Admin Role
+- Users are stored in the database.
+- The first user(s) can be created by inserting directly into the database or via a registration process (if enabled).
+- Each user has a `role` field, which can be `USER` or `ADMIN`.
+- Only users with the `ADMIN` role can access the admin dashboard and perform management actions (user management (needs developement), salary uploads, analytics, etc.).
+
+### OAuth 2.0 Authentication
+- The application supports Google OAuth 2.0 login for secure authentication.
+- Users can log in using their Google account by clicking the "Login with Google" button.
+- OAuth 2.0 configuration is set in `application-dev.properties` and `application-docker.properties` using environment variables:
+  - `GOOGLE_CLIENT_ID`
+  - `GOOGLE_CLIENT_SECRET`
+- On successful login, the user's email and profile information are retrieved from Google and used to authenticate or register the user in the system.
+- Role-based access is enforced after login (e.g., only admins can access `/admin/*` routes).
 
 ---
 

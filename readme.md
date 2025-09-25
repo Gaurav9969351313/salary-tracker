@@ -2,6 +2,10 @@
 
 A comprehensive Spring Boot backend system that enables employees to manage their personal salary history across multiple years, currencies, and companies. The system provides currency-normalized insights, salary growth analytics, and visualization-ready APIs.
 
+## Assumption: 
+A User should be able to analyse the salary trend from the given set of structured data (Excel). 
+Assumed that this is not for a single user. One user can analyse N numer of employees salary trend. Hence, User and Employee kept different. 
+
 ## 🚀 Features
 
 - **Multi-year Salary Tracking**: Store and manage salary data across different financial years
@@ -15,6 +19,7 @@ A comprehensive Spring Boot backend system that enables employees to manage thei
 ## 📋 Table of Contents
 
 - [Personal Salary Tracker](#personal-salary-tracker)
+  - [Assumption:](#assumption)
   - [🚀 Features](#-features)
   - [📋 Table of Contents](#-table-of-contents)
   - [🔧 Prerequisites](#-prerequisites)

@@ -1,6 +1,5 @@
 package com.walkingtree.salarytracker.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,6 +11,8 @@ import com.walkingtree.salarytracker.entity.dto.SalaryRecordDto;
 import com.walkingtree.salarytracker.entity.dto.SalaryTrendDto;
 import com.walkingtree.salarytracker.repository.SalaryRecordRepository;
 
+import lombok.RequiredArgsConstructor;
+
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -20,16 +21,12 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class SalaryService {
 
-    @Autowired
-    private SalaryRecordRepository salaryRecordRepository;
-
-    @Autowired
-    private ExcelParsingService excelParsingService;
-
-    @Autowired
-    private CurrencyService currencyService;
+    private final SalaryRecordRepository salaryRecordRepository;
+    private final ExcelParsingService excelParsingService;
+    private final CurrencyService currencyService;
 
     public List<SalaryRecord> uploadSalaryExcel(MultipartFile file, String employeeId) throws IOException {
         List<SalaryRecord> records = excelParsingService.parseExcelFile(file, employeeId);

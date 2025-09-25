@@ -66,6 +66,7 @@ public class SecurityConfig {
 					.logoutSuccessUrl("/?logout=true");
 
 		});
+		
 		httpSecurity.oauth2Login(oauth -> {
 			oauth.loginPage("/")
 					.successHandler(handler);

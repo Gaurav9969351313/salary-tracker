@@ -3,18 +3,17 @@ package com.walkingtree.salarytracker.auth;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import lombok.RequiredArgsConstructor;
+
 @Service
+@RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-	@Autowired
-	private UserRepository repo;
-
-	@Autowired
-	private PasswordEncoder encoder;
+	private final UserRepository repo;
+	private final PasswordEncoder encoder;
 
 	@Override
 	public User saveUser(User user) {

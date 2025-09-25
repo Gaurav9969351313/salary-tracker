@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import com.walkingtree.salarytracker.entity.CurrencyRate;
 import com.walkingtree.salarytracker.repository.CurrencyRateRepository;
 
+import lombok.RequiredArgsConstructor;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
@@ -14,10 +16,10 @@ import java.util.Map;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class CurrencyService {
     
-    @Autowired
-    private CurrencyRateRepository currencyRateRepository;
+    private final CurrencyRateRepository currencyRateRepository;
     
     // Default rates (in production, this would come from an external API)
     private final Map<String, BigDecimal> defaultRates = new HashMap<String, BigDecimal>() {{

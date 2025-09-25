@@ -26,7 +26,7 @@ public class SalaryTrackerSvcApplication {
 	/*
 	 * Quick Links: 
 	 * http://localhost:8080/oauth2/authorization/google
-	 * java "-Dspring.profiles.active=dev" -jar salary-tracker-svc-0.0.1-SNAPSHOT.jar
+	 *
 	 */
 
 	public static void main(String[] args) {

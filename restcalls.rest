@@ -10,6 +10,9 @@
 @amount=1000
 @rate=0.272100
 
+
+
+
 ### Get All Salaries: Working 
 GET {{baseurl}}/api/salaries/all?employeeId={{empId}} HTTP/1.1
 Content-Type: application/json

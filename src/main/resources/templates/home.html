@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <title>Home page</title>
+  <link rel="stylesheet" data-th-href="@{./css/output.css}">
+  <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+
+<main class="h-screen w-full flex flex-col">
+
+ <div id="successPopup" th:if="${registrationSuccess}" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-100 opacity-100 scale-100  transition-all duration-500">
+        <div class="bg-green-600 text-white p-8 rounded-lg max-w-lg w-full space-y-6">
+            <h2 class="text-2xl font-bold" >Registration Successful!</h2>
+            <p>Your account has been successfully created. You can now log in.</p>
+            <button id="closeSuccessPopup" class="w-full text-white bg-gray-700 hover:bg-gray-800 font-medium rounded-lg text-sm px-5 py-2.5">Close</button>
+        </div>
+    </div>
+
+
+    <!-- Include Navbar -->
+    <div th:replace="~{fragments/navbar :: navbar}"></div>
+    
+    
+    
+    
+
+    <!-- Middle Section with adjusted height and width -->
+    <section class="bg-blue-50 dark:bg-gray-900 flex-grow h-full w-full">
+        <div class="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 grid lg:grid-cols-2 gap-8 lg:gap-16">
+            <div class="flex flex-col justify-center">
+                <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Backend Project Assignment by GT</h1>
+                <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl dark:text-gray-400">
+                    In this backend assignment we used html, thymeleaf, tailwind CSS, flowbite components for frontend (Just for a poc purpose), and for backend, we have used springboot, Spring security for Authentication spring data JPA for database operations, OAuth2 for Quick Login and much more.
+                </p>
+                <!-- Add GitHub Link Here -->
+                <a href="#" class="text-blue-600 dark:text-blue-500 hover:underline font-medium text-lg inline-flex items-center">
+                    Go to Github
+                    <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                    </svg>
+                </a>
+            </div>
+            <div>
+                <div class="w-full lg:max-w-xl p-6 space-y-8 sm:p-8 bg-white rounded-lg shadow-xl dark:bg-gray-800">
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Sign in</h2>
+                    <div th:if="${msg}" class="p-4 mb-4 text-sm text-yellow-800 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300" role="alert">
+  					<span class="font-medium">Warning alert!</span> <span th:text="${msg}" ></span> </div>
+  					<div th:if="${param.error}" class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-red-400" role="alert">
+  						<span class="font-medium">Invalid Username or Password!</span> Change a few things up and try again.
+					</div>
+					<div th:if="${param.logout}" class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+  						<span class="font-medium">Logout Successful!</span>
+					</div>
+                    <form class="mt-8 space-y-6" th:action="@{/authenticate}" th:object="${user}" th:method="post">
+                        <div>
+                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+                            <input type="email" th:field="*{email}" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required />
+                        </div>
+                        <div>
+                            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
+                            <input type="password" th:field="*{password}" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+                        </div>
+                        <div class="flex items-start">
+                            <div class="flex items-center h-5">
+                                <input id="remember" aria-describedby="remember" name="remember" type="checkbox" class="w-4 h-4 border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:bg-gray-700 dark:border-gray-600" required />
+                            </div>
+                            <div class="ms-3 text-sm">
+                                <label for="remember" class="font-medium text-gray-500 dark:text-gray-400">Remember this device</label>
+                            </div>
+                            <a href="#" class="ms-auto text-sm font-medium text-blue-600 hover:underline dark:text-blue-500">Lost Password?</a>
+                        </div>
+					<!-- Container for both buttons, using Flexbox -->
+                     <div class="flex gap-4">
+                       <!-- Login to your account button -->
+                       <button type="submit" class="w-full sm:w-auto px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                         Login to your account
+                       </button>
+
+                       <!-- Sign in with Google button -->
+                       <a th:href="@{/oauth2/authorization/google}">
+                         <button type="button" class="w-full sm:w-auto px-5 py-3 text-base font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                           <svg class="w-4 h-4 me-2 inline-block" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 19">
+                             <path fill-rule="evenodd" d="M8.842 18.083a8.8 8.8 0 0 1-8.65-8.948 8.841 8.841 0 0 1 8.8-8.652h.153a8.464 8.464 0 0 1 5.7 2.257l-2.193 2.038A5.27 5.27 0 0 0 9.09 3.4a5.882 5.882 0 0 0-.2 11.76h.124a5.091 5.091 0 0 0 5.248-4.057L14.3 11H9V8h8.34c.066.543.095 1.09.088 1.636-.086 5.053-3.463 8.449-8.4 8.449l-.186-.002Z" clip-rule="evenodd"/>
+                           </svg> 
+                           Sign in with Google
+                         </button>
+                       </a>
+                     </div>
+
+
+
+  
+                        
+                        <div class="text-sm font-medium text-gray-900 dark:text-white">
+                            Not registered yet? <a href="#" id="createAccountLink" class="text-blue-600 hover:underline dark:text-blue-500">Create account</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for Create Account -->
+    <div id="createAccountModal" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50 opacity-0 scale-95 pointer-events-none transition-all duration-500 hidden">
+        <div class="bg-white p-8 rounded-lg max-w-lg w-full space-y-6 dark:bg-gray-800">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white">Create Account</h2>
+            <form th:action="@{/register}" th:method="post"  th:object="${user}" >
+                <!-- Form fields -->
+                <div class="grid gap-6 mb-6 md:grid-cols-2">
+                    <div>
+                        <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First name</label>
+                        <input type="text" th:field="*{firstName}" id="firsName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="John" required />
+                    </div>
+                    <div>
+                        <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last name</label>
+                        <input type="text" th:field="*{lastName}" id="lastName" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Doe" required />
+                    </div>
+                    <div>
+                        <label for="phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone number</label>
+                        <input type="number" th:field="*{phNumber}" id="phNumber" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="123-456-7890" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" required />
+                    </div>
+                    <div>
+                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                        <input type="email" th:field="*{email}" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="test@test.com" required />
+                    </div>
+                    <div>
+                        <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
+                        <input type="password" th:field="*{password}" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="*******" required />
+                    </div>
+                </div>
+                <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Create account</button>
+				<button type="reset" class="w-full text-red bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Reset</button>
+				
+            </form>
+            <button id="closeModal" class="w-full text-white bg-gray-500 hover:bg-gray-600 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-blue-800">Close</button>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer th:replace="~{fragments/footer :: footer}"></footer>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.js"></script>
+<script>
+    const modal = document.getElementById('createAccountModal');
+    const createAccountLink = document.getElementById('createAccountLink');
+    const closeModal = document.getElementById('closeModal');
+
+    // Show the modal with animation
+    createAccountLink.addEventListener('click', (e) => {
+        e.preventDefault(); // Prevent default anchor behavior
+        modal.classList.remove('hidden'); // Show the modal
+        setTimeout(() => {
+            modal.classList.remove('opacity-0', 'scale-95', 'pointer-events-none'); // Trigger the animation
+            modal.classList.add('opacity-100', 'scale-100'); // Fade and scale up
+        }, 50); // Slight delay for transition
+    });
+
+    // Close the modal with animation
+    closeModal.addEventListener('click', () => {
+        modal.classList.remove('opacity-100', 'scale-100');
+        modal.classList.add('opacity-0', 'scale-95');
+        setTimeout(() => {
+            modal.classList.add('hidden', 'pointer-events-none'); // Hide the modal after the animation
+        }, 300); // Match the duration of the transition
+    });
+
+    // Close the modal if clicked outside of the modal content
+    window.addEventListener('click', (e) => {
+        if (e.target === modal) {
+            modal.classList.remove('opacity-100', 'scale-100');
+            modal.classList.add('opacity-0', 'scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden', 'pointer-events-none');
+            }, 300);
+        }
+    });
+    
+    
+    
+    // Close the success popup
+    closeSuccessPopup.addEventListener('click', () => {
+        successPopup.classList.remove('opacity-100', 'scale-100');
+        successPopup.classList.add('opacity-0', 'scale-95');
+        setTimeout(() => {
+            successPopup.classList.add('hidden', 'pointer-events-none');
+        }, 300);
+    });
+
+    // Close the success popup if clicked outside
+    window.addEventListener('click', (e) => {
+        if (e.target === successPopup) {
+            successPopup.classList.remove('opacity-100', 'scale-100');
+            successPopup.classList.add('opacity-0', 'scale-95');
+            setTimeout(() => {
+                successPopup.classList.add('hidden', 'pointer-events-none');
+            }, 300);
+        }
+    });
+    
+    
+    
+    
+</script>
+<script src="js/script.js"></script>
+
+</body>
+</html>

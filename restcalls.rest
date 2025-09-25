@@ -1,0 +1,63 @@
+
+
+@baseurl=http://localhost:8080
+@empId=EMP001
+
+@from=AED	
+@to=USD
+@currency=AED
+@year=2023-24
+@amount=1000
+@rate=0.272100
+
+### Get All Salaries: Working 
+GET {{baseurl}}/api/salaries/all?employeeId={{empId}} HTTP/1.1
+Content-Type: application/json
+
+###1. **Upload Salary Excel**: Working 
+POST {{baseurl}}/api/salaries/upload?employeeId={{empId}} HTTP/1.1
+Content-Type: multipart/form-data
+
+### 2. **Get Salary by Year**: Working 
+GET {{baseurl}}/api/salaries/{{year}}?employeeId={{empId}}&baseCurrency={{currency}} HTTP/1.1
+Content-Type: application/json
+
+### 3. **Get Salary Trend**: Working
+GET {{baseurl}}/api/salaries/trend?employeeId={{empId}}&baseCurrency={{currency}} HTTP/1.1
+Content-Type: application/json
+
+### 4. **Get Latest Salary**: Working
+GET {{baseurl}}/api/salaries/latest?employeeId={{empId}}&baseCurrency={{currency}} HTTP/1.1
+Content-Type: application/json
+
+### 5. **Update Salary Hike**
+PUT {{baseurl}}/api/salaries/{{year}}/hike?employeeId={{empId}} HTTP/1.1
+Content-Type: application/json
+
+
+### 6. **Record Company Switch**
+POST {{baseurl}}/api/salaries/switch?employeeId={{empId}} HTTP/1.1
+Content-Type: application/json
+{
+
+}
+
+### 7. **Compare Salaries Across Companies** : Working
+GET {{baseurl}}/api/salaries/compare?employeeId={{empId}}&baseCurrency={{currency}}  HTTP/1.1
+Content-Type: application/json
+
+### Currency Management
+
+### 1. **Convert Currency**: Working
+GET {{baseurl}}/api/currency/convert?amount={{amount}}&from={{from}}&to={{to}} HTTP/1.1
+Content-Type: application/json
+
+
+### 2. **Get Exchange Rate**: Working
+GET {{baseurl}}/api/currency/rate?from={{from}}&to={{to}} HTTP/1.1
+Content-Type: application/json
+
+
+### 3. **Update Exchange Rate**: Working
+POST {{baseurl}}/api/currency/rate?from={{from}}&to={{to}}&rate={{rate}} HTTP/1.1
+Content-Type: application/json

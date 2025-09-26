@@ -58,7 +58,7 @@ public class OAuthSuccessHandler implements AuthenticationSuccessHandler {
 
         String redirectUrl = authorities.stream()
                                         .anyMatch(auth -> auth.getAuthority().equals("ADMIN"))
-                                        ? "admin/adminDashboard" : "user/dashboard";
+                                        ? "/admin/adminDashboard" : "/user/dashboard";
         
         // Redirect the user
         new DefaultRedirectStrategy().sendRedirect(request, response, redirectUrl);

@@ -6,6 +6,21 @@ A comprehensive Spring Boot backend system that enables employees to manage thei
 A User should be able to analyse the salary trend from the given set of structured data (Excel). 
 Assumed that this is not for a single user. One user can analyse N numer of employees salary trend. Hence, User and Employee kept different. 
 
+## Gap Analysis:
+
+- Single vs Multi-user: Not clear if it’s just for one user or supports multiple employees with ADMIN role.
+- Excel format: No fixed schema (columns, mandatory fields, handling of duplicates/invalid rows).
+- Year definition: Ambiguous (fiscal year vs calendar year).
+- Exchange rates: Source not defined (static, manual, or live API; current vs historical rates).
+- Salary hike logic: Unclear if applied to Fixed only or entire CTC, and whether hikes compound.
+- Company switch: Missing rules for closing old company record, start/end dates.
+- Latest salary: Conflicting scope (single employee vs list of employees).
+- APIs overlap: Trend API vs Graphical Comparison API partially duplicate functionality.
+
+## Postman API Collection
+- if you are using VS Code restcalls.rest file can be used from the vs code itself. 
+-     
+
 ## 🚀 Features
 
 - **Multi-year Salary Tracking**: Store and manage salary data across different financial years
@@ -20,6 +35,8 @@ Assumed that this is not for a single user. One user can analyse N numer of empl
 
 - [Personal Salary Tracker](#personal-salary-tracker)
   - [Assumption:](#assumption)
+  - [Gap Analysis:](#gap-analysis)
+  - [Postman API Collection](#postman-api-collection)
   - [🚀 Features](#-features)
   - [📋 Table of Contents](#-table-of-contents)
   - [🔧 Prerequisites](#-prerequisites)

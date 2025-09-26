@@ -119,15 +119,14 @@ public class SalaryService {
 
         SalaryRecord record = recordOpt.get();
 
-        if (request.getNewFixedCTC() != null) {
-            record.setFixedCTC(request.getNewFixedCTC());
-        } else if (request.getHikePercentage() != null) {
+        if (request.getHikePercentage() != null) {
             BigDecimal hikeMultiplier = BigDecimal.ONE.add(request.getHikePercentage().divide(BigDecimal.valueOf(100)));
             record.setFixedCTC(record.getFixedCTC().multiply(hikeMultiplier).setScale(2, RoundingMode.HALF_UP));
         }
 
-        if (request.getNewVariableComponent() != null) {
-            record.setVariableComponent(request.getNewVariableComponent());
+        if (request.getNewVariableComponentHikePercentage() != null) {
+            BigDecimal hikeMultiplier = BigDecimal.ONE.add(request.getNewVariableComponentHikePercentage().divide(BigDecimal.valueOf(100)));
+            record.setVariableComponent(record.getVariableComponent().multiply(hikeMultiplier).setScale(2, RoundingMode.HALF_UP));
         }
 
         SalaryRecord savedRecord = salaryRecordRepository.save(record);

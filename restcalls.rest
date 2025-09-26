@@ -2,16 +2,8 @@
 
 @baseurl=http://localhost:8080
 @empId=EMP001
-
-@from=AED	
-@to=USD
 @currency=AED
 @year=2023-24
-@amount=1000
-@rate=0.272100
-
-
-
 
 ### Get All Salaries: Working 
 GET {{baseurl}}/api/salaries/all?employeeId={{empId}} HTTP/1.1
@@ -37,12 +29,21 @@ Content-Type: application/json
 PUT {{baseurl}}/api/salaries/{{year}}/hike?employeeId={{empId}} HTTP/1.1
 Content-Type: application/json
 
+{
+    "hikePercentage": 10,
+    "newVariableComponentHikePercentage": 10
+}
 
 ### 6. **Record Company Switch**
 POST {{baseurl}}/api/salaries/switch?employeeId={{empId}} HTTP/1.1
 Content-Type: application/json
 {
-
+    "newCompanyName": "ABC pvt. ltd.",
+    "financialYear": "2024-25",
+    "fixedCTC": "300000",
+    "variableComponent": 30000,
+    "deductions": 6000,
+    "currency": "AED"
 }
 
 ### 7. **Compare Salaries Across Companies** : Working

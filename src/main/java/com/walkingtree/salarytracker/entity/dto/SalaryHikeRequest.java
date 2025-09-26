@@ -11,8 +11,5 @@ public class SalaryHikeRequest {
     @NotNull
     @DecimalMin(value = "0.0")
     private BigDecimal hikePercentage;
-    
-    private BigDecimal newFixedCTC;
-    private BigDecimal newVariableComponent;
-    private String reason;
+    private BigDecimal newVariableComponentHikePercentage;
 }

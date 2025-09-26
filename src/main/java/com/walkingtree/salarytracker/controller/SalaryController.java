@@ -39,15 +39,21 @@ public class SalaryController {
     public Object uploadSalaryExcel(
             @RequestParam("file") MultipartFile file,
             @RequestParam("employeeId") String employeeId,
-            RedirectAttributes redirectAttributes,
             HttpServletRequest request, Model model) {
+        boolean isApi = request.getHeader("Accept") != null && request.getHeader("Accept").contains("application/json");
         try {
             salaryService.uploadSalaryExcel(file, employeeId);
+            if (isApi) {
+                return ResponseEntity.ok(new ApiResponseDto("Success", "Excel uploaded and processed successfully", null));
+            }
             model.addAttribute("uploadMessage", "Excel uploaded and processed successfully");
             List<SalaryTrendDto> trends = salaryService.getSalaryTrend(employeeId, "USD"); // By default using USD
             model.addAttribute("salaryTrendData", trends);
             return "admin/adminDashboard";
         } catch (IOException e) {
+            if (isApi) {
+                return ResponseEntity.badRequest().body(new ApiResponseDto("Error", "Failed to process Excel file: " + e.getMessage(), null));
+            }
             model.addAttribute("uploadError", "Failed to process Excel file: " + e.getMessage());
             return "admin/adminDashboard";
         }

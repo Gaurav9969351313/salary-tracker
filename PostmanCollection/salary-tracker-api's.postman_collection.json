@@ -1,0 +1,318 @@
+{
+	"info": {
+		"_postman_id": "c961b34a-c1ea-4eba-be17-219058263e02",
+		"name": "salary-tracker-api's",
+		"description": "## Gap Analysis:\n\n- **Single vs Multi-user:** Not clear if it’s just for one user or supports multiple employees with ADMIN role.\n    \n- **Excel format**: No fixed schema (columns, mandatory fields, handling of duplicates/invalid rows).\n    \n- **Year definition**: Ambiguous (fiscal year vs calendar year).\n    \n- **Exchange rates**: Source not defined (static, manual, or live API; current vs historical rates).\n    \n- **Salary hike logic:** Unclear if applied to Fixed only or entire CTC, and whether hikes compound.\n    \n- **Company switch**: Missing rules for closing old company record, start/end dates.\n    \n- **Latest salary**: Conflicting scope (single employee vs list of employees).\n    \n- **APIs overlap**: Trend API vs Graphical Comparison API partially duplicate functionality.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38474862"
+	},
+	"item": [
+		{
+			"name": "uploadFile",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/C:/Users/epost/Downloads/SampleExcel.xlsx"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseurl}}/api/salaries/upload?employeeId={{empId}}",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"api",
+						"salaries",
+						"upload"
+					],
+					"query": [
+						{
+							"key": "employeeId",
+							"value": "{{empId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllSalaries",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseurl}}/api/salaries/all?employeeId={{empId}}",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"api",
+						"salaries",
+						"all"
+					],
+					"query": [
+						{
+							"key": "employeeId",
+							"value": "{{empId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getSalaryByYear (Normalised with base currency)",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseurl}}/api/salaries/{{year}}?employeeId={{empId}}&baseCurrency={{currency}}",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"api",
+						"salaries",
+						"{{year}}"
+					],
+					"query": [
+						{
+							"key": "employeeId",
+							"value": "{{empId}}"
+						},
+						{
+							"key": "baseCurrency",
+							"value": "{{currency}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getSalaryTrend",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": " application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseurl}}/api/salaries/trend?employeeId={{empId}}&baseCurrency={{currency}}",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"api",
+						"salaries",
+						"trend"
+					],
+					"query": [
+						{
+							"key": "employeeId",
+							"value": "{{empId}}"
+						},
+						{
+							"key": "baseCurrency",
+							"value": "{{currency}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getLatestSalary",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/api/salaries/latest?employeeId={{empId}}&baseCurrency={{currency}}",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"api",
+						"salaries",
+						"latest"
+					],
+					"query": [
+						{
+							"key": "employeeId",
+							"value": "{{empId}}"
+						},
+						{
+							"key": "baseCurrency",
+							"value": "{{currency}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getComparedSalaryDataByEmployeeID",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": " application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseurl}}/api/salaries/compare?employeeId={{empId}}&baseCurrency={{currency}}",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"api",
+						"salaries",
+						"compare"
+					],
+					"query": [
+						{
+							"key": "employeeId",
+							"value": "{{empId}}"
+						},
+						{
+							"key": "baseCurrency",
+							"value": "{{currency}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateSalaryHike",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"hikePercentage\": 10,\r\n    \"newVariableComponentHikePercentage\": 10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/api/salaries/{{year}}/hike?employeeId={{empId}}",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"api",
+						"salaries",
+						"{{year}}",
+						"hike"
+					],
+					"query": [
+						{
+							"key": "employeeId",
+							"value": "{{empId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "switchCompnay",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"newCompanyName\": \"ABC pvt. ltd.\",\r\n    \"financialYear\": \"2024-25\",\r\n    \"fixedCTC\": \"300000\",\r\n    \"variableComponent\": 30000,\r\n    \"deductions\": 6000,\r\n    \"currency\": \"AED\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseurl}}/api/salaries/switch?employeeId={{empId}}",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"api",
+						"salaries",
+						"switch"
+					],
+					"query": [
+						{
+							"key": "employeeId",
+							"value": "{{empId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -21,6 +21,11 @@
 						"key": "Accept",
 						"value": "application/json",
 						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "beaer {{token}}",
+						"type": "text"
 					}
 				],
 				"body": {
@@ -62,6 +67,11 @@
 						"key": "Content-Type",
 						"value": "application/json",
 						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "bearer {{token}}",
+						"type": "text"
 					}
 				],
 				"url": {
@@ -92,6 +102,11 @@
 					{
 						"key": "Content-Type",
 						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "bearer {{token}}",
 						"type": "text"
 					}
 				],
@@ -131,6 +146,11 @@
 						"key": "Content-Type",
 						"value": " application/json",
 						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "bearer {{token}}",
+						"type": "text"
 					}
 				],
 				"url": {
@@ -164,7 +184,18 @@
 					"type": "noauth"
 				},
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "bearer {{token}}",
+						"type": "text"
+					},
+					{
+						"key": "content-type",
+						"value": " application/json",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "{{baseurl}}/api/salaries/latest?employeeId={{empId}}&baseCurrency={{currency}}",
 					"host": [
@@ -200,6 +231,11 @@
 					{
 						"key": "Content-Type",
 						"value": " application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "bearer {{token}}",
 						"type": "text"
 					}
 				],
@@ -238,6 +274,11 @@
 					{
 						"key": "Content-Type",
 						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "bearer {{token}}",
 						"type": "text"
 					}
 				],
@@ -282,6 +323,11 @@
 					{
 						"key": "Content-Type",
 						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "bearer {{token}}",
 						"type": "text"
 					}
 				],

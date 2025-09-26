@@ -60,10 +60,15 @@ public class SalaryTrackerSvcApplication {
             if (count == 0) {
                 User user1 = new User(
                         0, "Tejal", "Talele", "tejalsarode29@gmail.com", 9579676068L,
+                        passwordEncoder.encode("Teju@2810"), "USER"
+                );
+
+				User user2 = new User(
+                        0, "Gaurav", "Talele", "epostgauravtalele@gmail.com", 9969351313L,
                         passwordEncoder.encode("Teju@2810"), "ADMIN"
                 );
 
-                userRepository.save(user1);
+                userRepository.saveAll(List.of(user1, user2));
 
                 System.out.println("Users saved successfully!");
             } else {

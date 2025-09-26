@@ -64,7 +64,7 @@ public class SalaryTrackerSvcApplication {
                 );
 
 				User user2 = new User(
-                        0, "Gaurav", "Talele", "epostgauravtalele@gmail.com", 9969351313L,
+                        1, "Gaurav", "Talele", "epostgauravtalele@gmail.com", 9969351313L,
                         passwordEncoder.encode("Teju@2810"), "ADMIN"
                 );
 

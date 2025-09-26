@@ -21,6 +21,7 @@ import com.walkingtree.salarytracker.service.SalaryService;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 import java.io.IOException;
 import java.util.List;
@@ -30,10 +31,10 @@ import java.util.Optional;
 @RequestMapping("/api/salaries")
 @CrossOrigin(origins = "*")
 @PreAuthorize("hasRole('ADMIN')")
+@RequiredArgsConstructor
 public class SalaryController {
     
-    @Autowired
-    private SalaryService salaryService;
+    private final SalaryService salaryService;
     
     @PostMapping("/upload")
     public Object uploadSalaryExcel(

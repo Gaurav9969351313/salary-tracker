@@ -97,7 +97,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: build_and_publish
+    needs: publish_image
     steps:
       - uses: actions/checkout@v4
       - name: Set version

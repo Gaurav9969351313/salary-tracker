@@ -60,13 +60,11 @@ public class AdminController {
 			model.addAttribute("users", users);
 			model.addAttribute("name", user.getFirstName());
 			model.addAttribute("isAuthenticated", authentication.isAuthenticated());
-			System.out.println(model);
 			return "admin/adminDashboard";
 		}
 
 		User user = userService.findByEmail(authentication.getName());
 
-		System.out.println("details  from else");
 		System.out.println(authentication.getName());
 		List<User> users = userService.getAllUsers();
 
@@ -91,7 +89,6 @@ public class AdminController {
 
 	@PostMapping("/users/{id}/delete")
 	public String deleteUser(@PathVariable("id") long id) {
-		System.out.println("from the delete " + id);
 		userService.deleteUser(id);
 		return "redirect:/admin/adminDashboard"; // Redirect back to the user management page after deletion
 	}

@@ -1,6 +1,5 @@
 package com.walkingtree.salarytracker.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
 import org.springframework.security.oauth2.core.user.OAuth2User;
@@ -15,14 +14,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.walkingtree.salarytracker.auth.User;
 import com.walkingtree.salarytracker.auth.UserServiceImpl;
 
+import lombok.RequiredArgsConstructor;
+
 
 @Controller
 @RequestMapping("/user")
+@RequiredArgsConstructor
 public class UserController {
 
-	@Autowired
-	private UserServiceImpl userService;
-	
+	private final UserServiceImpl userService;
 	
 	@RequestMapping("/dashboard")
 	public String dashboard(Authentication authentication, Model model) {
@@ -33,8 +33,6 @@ public class UserController {
             String email = oauth2User.getAttribute("email");
             User user= userService.findByEmail(email);
              
-            System.out.println();
-            
             model.addAttribute("isAuthenticated", authentication.isAuthenticated());
            
             model.addAttribute("user", user);

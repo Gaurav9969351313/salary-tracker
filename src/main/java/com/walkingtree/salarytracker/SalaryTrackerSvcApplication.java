@@ -55,24 +55,24 @@ public class SalaryTrackerSvcApplication {
 
             // Log to verify if the count check is working
             long count = userRepository.count();
-            System.out.println("Number of users in the database: " + count);
+            log.info("Number of users in the database: {}", count);
 
             if (count == 0) {
                 User user1 = new User(
                         0, "Tejal", "Talele", "tejalsarode29@gmail.com", 9579676068L,
                         passwordEncoder.encode("Teju@2810"), "USER"
                 );
-
 				User user2 = new User(
-                        1, "Gaurav", "Talele", "epostgauravtalele@gmail.com", 9969351313L,
+                        0, "Gaurav", "Talele", "epostgauravtalele@gmail.com", 9969351313L,
                         passwordEncoder.encode("Teju@2810"), "ADMIN"
                 );
-
+				
+				// userRepository.save(user2);
                 userRepository.saveAll(List.of(user1, user2));
 
-                System.out.println("Users saved successfully!");
+                log.info("Users saved successfully!");
             } else {
-                System.out.println("Users already exist, skipping insertion.");
+                log.info("Users already exist, skipping insertion.");
             }
 			
 			currencyRateRepository.saveAll(List.of(

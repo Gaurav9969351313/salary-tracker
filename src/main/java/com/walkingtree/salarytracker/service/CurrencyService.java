@@ -1,6 +1,5 @@
 package com.walkingtree.salarytracker.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.walkingtree.salarytracker.entity.CurrencyRate;

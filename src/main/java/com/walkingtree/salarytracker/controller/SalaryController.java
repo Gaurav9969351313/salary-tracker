@@ -1,16 +1,13 @@
 package com.walkingtree.salarytracker.controller;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.walkingtree.salarytracker.entity.SalaryRecord;
 import com.walkingtree.salarytracker.entity.dto.ApiResponseDto;
 import com.walkingtree.salarytracker.entity.dto.CompanySalaryComparisonDto;
 import com.walkingtree.salarytracker.entity.dto.CompanySwitchRequest;
